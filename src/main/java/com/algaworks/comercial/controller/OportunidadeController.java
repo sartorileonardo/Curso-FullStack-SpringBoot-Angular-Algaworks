@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.algaworks.comercial.model.Oportunidade;
 import com.algaworks.comercial.repository.OportunidadeRepository;
@@ -39,17 +40,49 @@ public class OportunidadeController {
 	public ResponseEntity<Oportunidade> listarPorId(@PathVariable Long id) {
 		Optional<Oportunidade> oportunidade = oportunidadeRepository.findById(id);
 
+		if(oportunidade.equals(null)) {
+			return ResponseEntity.notFound().build();
+		}
+		
 		return ResponseEntity.ok(oportunidade.get());
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Oportunidade inserir(@Valid @RequestBody Oportunidade oportunidade) {
+		Optional<Oportunidade> oportunidadeExistente = oportunidadeRepository
+				.fundByDescricaoAndNomeProspecto(oportunidade.getDescricao(), oportunidade.getNomeProspecto());
+		
+		if(oportunidadeExistente.isPresent()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+					"Já existe uma oportunidade para este prospecto com a mesma descrição, se deseja alterar, utilize-o");
+		}
+		
 		return oportunidadeRepository.save(oportunidade);
 	}
 	
-	@PutMapping
-	public 
+	public Oportunidade alterar(@Valid @RequestBody Oportunidade oportunidade) {
+		Optional<Oportunidade> oportunidadeExistente = oportunidadeRepository
+				.fundByDescricaoAndNomeProspecto(oportunidade.getDescricao(), oportunidade.getNomeProspecto());
+		
+		if(!oportunidadeExistente.isPresent()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+					"Não existe uma oportunidade para este prospecto, insira-o antes de alterá-lo");
+		}
+		return oportunidadeRepository.save(oportunidade);
+	}
+	
+	public void verificaOportunidadeExistente(Long id) {
+		Optional<Oportunidade> oportunidade = oportunidadeRepository.findById(id);
+		if(oportunidade == null) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+					"A oportunidade com ID:" + id + " não foi encontrada");
+		}
+	}
+	
+	
+	
+	
 	
 	
 	

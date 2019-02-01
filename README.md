@@ -8,13 +8,13 @@ Para executar o projeto você deve:
 5. Importar o arquivo /comercial-api/src/test/java/comercialApiTestRestClient.json na extensão Rest Client do Google Chrome;
 6. Executar no botão play;
 
-#URLs
+# URLs
 
-GET ALL: http://localhost:8888/oportunidades/
-GET (By ID): http://localhost:8888/oportunidades/id
-POST: http://localhost:8888/oportunidades/
-PUT: http://localhost:8888/oportunidades/id
-DELETE: http://localhost:8888/oportunidades/id
+- GET ALL: http://localhost:8888/oportunidades/
+- GET (By ID): http://localhost:8888/oportunidades/id
+- POST: http://localhost:8888/oportunidades/
+- PUT: http://localhost:8888/oportunidades/id
+- DELETE: http://localhost:8888/oportunidades/id
 
 # Teste com Rest Client Api
 ![testeoportunidadesapi](https://user-images.githubusercontent.com/7613528/52146519-1ba96600-264b-11e9-9e99-6562b05040af.gif)

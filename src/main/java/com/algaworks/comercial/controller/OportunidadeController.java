@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,7 +42,7 @@ public class OportunidadeController {
 	public ResponseEntity<Oportunidade> listarPorId(@PathVariable Long id) {
 		Optional<Oportunidade> oportunidade = oportunidadeRepository.findById(id);
 
-		if(oportunidade.equals(null)) {
+		if(oportunidade == null) {
 			return ResponseEntity.notFound().build();
 		}
 		
@@ -51,7 +53,7 @@ public class OportunidadeController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Oportunidade inserir(@Valid @RequestBody Oportunidade oportunidade) {
 		Optional<Oportunidade> oportunidadeExistente = oportunidadeRepository
-				.fundByDescricaoAndNomeProspecto(oportunidade.getDescricao(), oportunidade.getNomeProspecto());
+				.findByDescricaoAndNomeProspecto(oportunidade.getDescricao(), oportunidade.getNomeProspecto());
 		
 		if(oportunidadeExistente.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -61,29 +63,36 @@ public class OportunidadeController {
 		return oportunidadeRepository.save(oportunidade);
 	}
 	
-	public Oportunidade alterar(@Valid @RequestBody Oportunidade oportunidade) {
+	@PutMapping("/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Oportunidade alterar(@Valid @RequestBody Oportunidade oportunidade, @PathVariable Long id) {
 		Optional<Oportunidade> oportunidadeExistente = oportunidadeRepository
-				.fundByDescricaoAndNomeProspecto(oportunidade.getDescricao(), oportunidade.getNomeProspecto());
+				.findById(id);
 		
 		if(!oportunidadeExistente.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
 					"Não existe uma oportunidade para este prospecto, insira-o antes de alterá-lo");
 		}
+		oportunidade.setId(id);
 		return oportunidadeRepository.save(oportunidade);
 	}
 	
-	public void verificaOportunidadeExistente(Long id) {
-		Optional<Oportunidade> oportunidade = oportunidadeRepository.findById(id);
-		if(oportunidade == null) {
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public void remover(@PathVariable Long id) {
+		Optional<Oportunidade> oportunidadeExistente = oportunidadeRepository
+				.findById(id);
+		
+		if(!oportunidadeExistente.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-					"A oportunidade com ID:" + id + " não foi encontrada");
+					"Não existe uma oportunidade para este prospecto, só é possível remover oportunidades existentes.");
 		}
+		
+		if(id != null) {
+			oportunidadeRepository.deleteById(id);
+		}
+		
 	}
-	
-	
-	
-	
-	
-	
+		
 	
 }

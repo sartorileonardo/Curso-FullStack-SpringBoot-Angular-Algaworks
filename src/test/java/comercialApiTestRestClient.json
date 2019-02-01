@@ -1,0 +1,232 @@
+{
+  "front-version": "2.19.1",
+  "version": 3,
+  "nodes": [
+    {
+      "type": "Project",
+      "description": "Teste de todas operações REST para api.\n",
+      "id": "c3e1d3a3-7557-4070-af60-b91939a157d8",
+      "lastModified": "2019-02-01T17:34:25.343-02:00",
+      "name": "ComercialApi"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.5",
+        "name": "DELETE"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8888",
+        "path": "/oportunidades/5"
+      },
+      "description": "Remover uma oportunidade",
+      "id": "4727e56a-3206-47a0-a2c9-2cdb7bb8dc85",
+      "lastModified": "2019-02-01T17:30:36.814-02:00",
+      "name": "DELETE",
+      "headers": [],
+      "metaInfo": {
+        "ownerId": "github|7613528"
+      },
+      "parentId": "c3e1d3a3-7557-4070-af60-b91939a157d8"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8888",
+        "path": "/oportunidades/"
+      },
+      "description": "Listar todas oportunidades.",
+      "id": "ec926934-b312-4208-9a86-72b2b48192a6",
+      "lastModified": "2019-01-24T13:26:56.124-02:00",
+      "name": "GET ALL",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "github|7613528"
+      },
+      "parentId": "c3e1d3a3-7557-4070-af60-b91939a157d8"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8888",
+        "path": "/oportunidades/1"
+      },
+      "description": "Lista uma oportunidade pelo ID.",
+      "id": "933963f5-b9b2-4ce2-828c-897da8308169",
+      "lastModified": "2019-01-24T18:10:53.499-02:00",
+      "name": "GET BY ID",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Ty",
+          "value": "application/json"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "github|7613528"
+      },
+      "parentId": "c3e1d3a3-7557-4070-af60-b91939a157d8"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBody": "{\n\"nomeProspecto\": \"Fulano XYA\",\n\"descricao\": \"lalalal\",\n\"valor\": 1212\n}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8888",
+        "path": "/oportunidades/"
+      },
+      "description": "Add uma oportunidade.",
+      "id": "2f9d4e03-9d3d-485c-94d6-5b02a55b26f7",
+      "lastModified": "2019-02-01T17:30:53.503-02:00",
+      "name": "POST",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "github|7613528"
+      },
+      "parentId": "c3e1d3a3-7557-4070-af60-b91939a157d8"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.4",
+        "name": "PUT"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBody": "{\n\"nomeProspecto\": \"Fulano ABC\",\n\"descricao\": \"Projeto A\",\n\"valor\": 12345\n}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "localhost:8888",
+        "path": "/oportunidades/2"
+      },
+      "description": "Atualiza uma oportunidade",
+      "id": "3981442d-0a19-47bb-8918-3dd5086fab1a",
+      "lastModified": "2019-02-01T17:31:55.573-02:00",
+      "name": "PUT",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "github|7613528"
+      },
+      "parentId": "c3e1d3a3-7557-4070-af60-b91939a157d8"
+    }
+  ]
+}

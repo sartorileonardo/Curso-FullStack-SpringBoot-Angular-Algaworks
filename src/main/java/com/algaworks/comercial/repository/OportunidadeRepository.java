@@ -8,5 +8,5 @@ import com.algaworks.comercial.model.Oportunidade;
 
 public interface OportunidadeRepository extends JpaRepository<Oportunidade, Long>{
 	
-	Optional<Oportunidade> fundByDescricaoAndNomeProspecto(String descricao, String nomeProspecto);
+	Optional<Oportunidade> findByDescricaoAndNomeProspecto(String descricao, String nomeProspecto);
 }
